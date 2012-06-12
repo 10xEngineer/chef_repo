@@ -1,4 +1,3 @@
-chef_repo
-=========
+# 10xEngineer Chef Repository
 
-Cookbooks and shared roles for microcloud.10xengineer
+Cookbook and roles for the 10xEngineer infrastructure. The repository should be included as GIT submodule within individual projects.
