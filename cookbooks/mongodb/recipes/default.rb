@@ -1,5 +1,5 @@
 # cookbook mongodb
 
-package :mongodb do
+package "mongodb" do
   action :upgrade
 end
