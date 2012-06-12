@@ -2,6 +2,6 @@
 
 # TODO add basic ruby functionality
 
-gem_package :bundler do
+gem_package "bundler" do
   action :install
 end
