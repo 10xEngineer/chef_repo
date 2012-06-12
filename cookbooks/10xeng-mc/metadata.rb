@@ -10,3 +10,4 @@ end
 
 depends "node"
 depends "zmq"
+depends "mongodb"
