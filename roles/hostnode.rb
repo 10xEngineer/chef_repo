@@ -1,6 +1,7 @@
 name "hostnode"
 description "10xEngineer hostnode"
 run_list(
+  "role[base]",
   "recipe[sudo]",
   "recipe[node]",
   "recipe[lvm]",
