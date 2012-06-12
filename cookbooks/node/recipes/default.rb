@@ -28,3 +28,13 @@ end
 package "npm" do
   action :upgrade
 end
+
+node["npm"]["packages"].each do |p|
+  script "install #{p}" do
+    interpreter "bash"
+    user "root"
+    code <<-EOH
+      /usr/bin/npm install -g #{p}
+    EOH
+  end
+end
