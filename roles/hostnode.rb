@@ -6,7 +6,7 @@ run_list(
   "recipe[lvm]",
   "recipe[lxc]",
   "recipe[lxc::rootfs-cache]",
-  "recipe[mc-node::default]"
+  "recipe[10xeng-node::default]"
 )
 
 override_attributes "authorization" => {
