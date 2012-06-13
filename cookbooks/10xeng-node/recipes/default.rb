@@ -65,15 +65,16 @@ gem_package "/tmp/10xengineer-node.gem" do
 end
 
 # FIXME cover notification as part of tests (important)
-http_request "confirm node" do
-  action :post
-  url "#{node['microcloud']['endpoint']}/server/#{node['microcloud']['id']}/notify"
-  message Yajl::Encoder.encode({
+if node['microcloud']['endpoint']
+  http_request "confirm node" do
+    action :post
+    url "#{node['microcloud']['endpoint']}/server/#{node['microcloud']['id']}/notify"
+    message Yajl::Encoder.encode({
       :action => "confirm",
       :data => {
-        :hostname => "TODO"
-      }
+      :hostname => "TODO"
+    }
     })
-  headers({"Authorization" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+    headers({"Authorization" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+  end
 end
-
