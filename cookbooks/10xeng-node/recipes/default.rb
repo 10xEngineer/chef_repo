@@ -68,7 +68,7 @@ end
 if node['microcloud']['endpoint']
   http_request "confirm node" do
     action :post
-    url "#{node['microcloud']['endpoint']}/server/#{node['microcloud']['id']}/notify"
+    url "#{node['microcloud']['endpoint']}/server/#{node['10xeng-node']['id']}/notify"
     message Yajl::Encoder.encode({
       :action => "confirm",
       :data => {
