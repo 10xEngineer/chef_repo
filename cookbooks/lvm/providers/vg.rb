@@ -9,7 +9,7 @@ def create_vg(new_resource)
   unless group
     Chef::Log.info "Creating new volume group '#{new_resource.name}'"
 
-    lvm.raw "vgcreate #{new_resource.name} #{new_resource.volumes.join(' ')}"
+    lvm.raw "vgcreate #{new_resource.name} #{new_resource.physical_volumes.join(' ')}"
 
     new_resource.updated_by_last_action(true)
   else

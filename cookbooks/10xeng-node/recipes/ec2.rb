@@ -11,7 +11,7 @@ end
 
 mount "/mnt" do
   device "/dev/xvdb"
-  action [:unmount, :disable]
+  action [:umount, :disable]
 
   notifies :create, "lvm_vg[lxc]", :immediately
 end
