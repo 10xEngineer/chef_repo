@@ -64,6 +64,19 @@ gem_package "/tmp/10xengineer-node.gem" do
   action :install
 end
 
+service "lxc-net" do
+  supports :status => true, :restart => true
+  action :start
+end
+
+# adds dnsmasq dhcp-script
+cookbook_file "/etc/init/lxc-net.conf" do
+  source "lxc-net.conf"
+  mode "0644"
+
+  notifies :restart, "service[lxc-net]"
+end
+
 # FIXME cover notification as part of tests (important)
 if node['microcloud']['endpoint']
   http_request "confirm node" do
