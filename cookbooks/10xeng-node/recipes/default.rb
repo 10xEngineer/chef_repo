@@ -77,6 +77,11 @@ cookbook_file "/etc/init/lxc-net.conf" do
   notifies :restart, "service[lxc-net]"
 end
 
+template "/etc/10xeng.yaml" do
+  source "10xeng.yaml.erb"
+  mode "0644"
+end
+
 # FIXME cover notification as part of tests (important)
 if node['microcloud']['endpoint']
   http_request "confirm node" do
