@@ -82,12 +82,8 @@ if node['microcloud']['endpoint']
   http_request "confirm node" do
     action :post
     url "#{node['microcloud']['endpoint']}/server/#{node['10xeng-node']['id']}/notify"
-    message Yajl::Encoder.encode({
-      :action => "confirm",
-      :data => {
-      :hostname => "TODO"
-    }
-    })
-    headers({"Authorization" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+    message :action => "confirm"
+    # TODO authorization not yet supported
+    #headers({"Authorization" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
   end
 end
