@@ -86,7 +86,7 @@ end
 if node['microcloud']['endpoint']
   http_request "confirm node" do
     action :post
-    url "#{node['microcloud']['endpoint']}/server/#{node['10xeng-node']['id']}/notify"
+    url "#{node['microcloud']['endpoint']}/servers/#{node['10xeng-node']['id']}/notify"
     message :action => "confirm", :hostnode => {
       :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
     }
