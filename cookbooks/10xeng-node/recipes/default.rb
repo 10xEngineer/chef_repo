@@ -82,6 +82,17 @@ template "/etc/10xeng.yaml" do
   mode "0644"
 end
 
+#
+# install lxc templates (currently only lxc-ubuntu - based on default, only adding 
+# configurable packages
+#
+# TODO better template distribution mechanism / support other platforms
+#
+template "/usr/lib/lxc/templates/lxc-ubuntu" do
+  source "lxc-ubuntu.erb"
+  mode "0755"
+end
+
 # FIXME cover notification as part of tests (important)
 if node['microcloud']['endpoint']
   http_request "confirm node" do
