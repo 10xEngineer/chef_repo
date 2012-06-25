@@ -87,11 +87,12 @@ end
 # configurable packages
 #
 # TODO better template distribution mechanism / support other platforms
+# FIXME temporarily removed (due to a number of issues with lxc provisioning/cgroups)
 #
-template "/usr/lib/lxc/templates/lxc-ubuntu" do
-  source "lxc-ubuntu.erb"
-  mode "0755"
-end
+#template "/usr/lib/lxc/templates/lxc-ubuntu" do
+#  source "lxc-ubuntu.erb"
+#  mode "0755"
+#end
 
 # FIXME cover notification as part of tests (important)
 if node['microcloud']['endpoint']
