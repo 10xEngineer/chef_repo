@@ -21,6 +21,13 @@ node["gateone"]["packages"].each do |p|
   end
 end
 
+include_recipe "python::pip"
+
+# requests for http REST client
+python_pip "requests" do
+  action :install
+end
+
 #
 # install gateone from tag.gz distribution
 # 
