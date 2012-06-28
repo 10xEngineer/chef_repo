@@ -98,8 +98,8 @@ end
 if node['microcloud']['endpoint']
   http_request "confirm node" do
     action :post
-    url "#{node['microcloud']['endpoint']}/servers/#{node['10xeng-node']['id']}/notify"
-    message :action => "confirm", :hostnode => {
+    url "#{node['microcloud']['endpoint']}/nodes/#{node['10xeng-node']['id']}/notify"
+    message :action => "confirm", :node => {
       :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
     }
     # TODO authorization not yet supported
