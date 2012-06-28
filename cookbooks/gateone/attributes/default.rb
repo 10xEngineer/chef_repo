@@ -4,7 +4,7 @@ default["gateone"]["packages"] = ["python-tornado_2.2-1_all.deb"]
 default["gateone"]["auth"] = nil
 default["gateone"]["users_dir"] = "/opt/gateone/users"
 
-default["gateone"]["commit"] = "87afae2"
+default["gateone"]["commit"] = "324ca08"
 
 # configuration parameters
 # TODO command
