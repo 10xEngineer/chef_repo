@@ -10,4 +10,9 @@ Check out complete microcloud/chef repository and run
 		export TARGET=ec2-hostname-where-to-install
 		./mc_bootstrap
 
-Enjoy
+To get log from individual services use
+
+	cd /etc/sv
+	tail -f */log/main/current
+
+Enjoy.
