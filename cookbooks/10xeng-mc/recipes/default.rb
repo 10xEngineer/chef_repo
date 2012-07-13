@@ -91,3 +91,9 @@ end
 nginx_site "microcloud.conf" do
   enable true
 end
+
+# FIXME need to provide 10xeng.yaml config
+# FIXME buckets for binary distributions
+# FIXME provisiong AMIs for 10xeng AWS account
+# FIXME toolchain binary distribution to 10xeng AWS account
+# FIXME get DNS endpoint
