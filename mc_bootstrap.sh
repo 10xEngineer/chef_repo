@@ -5,6 +5,7 @@
 # bootstrap
 # ec2-54-247-14-231.eu-west-1.compute.amazonaws.com
 ssh -A ubuntu@${TARGET} <<'ENDSSH'
+sudo apt-get clean
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install ruby1.9.3 build-essential vim linux-headers-$(uname -r)

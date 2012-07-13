@@ -1,5 +1,7 @@
 #!/bin/sh
 exec 2>&1
 
+export MICROCLOUD_ENV=<%= node["microcloud"]["environment"] %>
+
 cd /home/microcloud/deploy/service
 exec /home/microcloud/deploy/service/bin/service.sh lxc

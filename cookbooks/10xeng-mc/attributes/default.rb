@@ -1,0 +1,1 @@
+default["microcloud"]["environment"] = "development"
