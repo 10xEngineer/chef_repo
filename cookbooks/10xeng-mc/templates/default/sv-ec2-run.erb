@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd /home/microcloud/deploy/service
+exec /home/microcloud/deploy/service/bin/service ec2

@@ -53,7 +53,27 @@ script "install npm packages" do
   EOH
 end
 
+# run bundler
+script "install gems" do
+  interpreter "bash"
+  user "root"
+  cwd "/home/microcloud/deploy/service"
+  code <<-EOH
+  bundle install
+  EOH
+end
+
 runit_service "microcloud"
+
+# FIXME services to be configurable via attributes
+%w{broker ec2 dummy lxc loop git_adm}.each do |serv_name|
+  runit_service serv_name
+
+  service serv_name do
+    supports :status => true, :restart => true, :reload => true
+    action [ :start ]
+  end
+end
 
 service "microcloud" do
   supports :status => true, :restart => true, :reload => true
