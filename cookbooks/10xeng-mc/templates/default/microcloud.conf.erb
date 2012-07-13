@@ -1,0 +1,11 @@
+server {
+	listen 80;
+	server_name mc.dev.10xengineer.me mc.dev.laststation.net;
+
+	proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+	location / {
+    	proxy_pass http://127.0.0.1:8080/;
+  }
+}

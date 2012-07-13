@@ -1,5 +1,7 @@
 # cookbook 10xeng-mc
 
+include_recipe "nginx"
+
 # ruby dependencies
 %w{build-essential libxml2-dev libxslt-dev}.each do |p|
   package p do
@@ -56,4 +58,12 @@ runit_service "microcloud"
 service "microcloud" do
   supports :status => true, :restart => true, :reload => true
   action [ :start ]
+end
+
+template "/etc/nginx/sites-available/microcloud.conf" do
+  source "microcloud.conf.erb"
+end
+
+nginx_site "microcloud.conf" do
+  enable true
 end
