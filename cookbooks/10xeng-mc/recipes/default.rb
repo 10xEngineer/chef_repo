@@ -13,3 +13,31 @@ end
     action :upgrade
   end
 end
+
+# microcloud user
+user "microcloud" do
+  comment "Microcloud user"
+  uid 1666
+  gid "users"
+  home "/home/microcloud"
+  shell "/bin/sh"
+  password "$1$n1NZCRfR$9nERbvjfw0EXRe4PrmBAi0"
+  supports :manage_home => true
+end
+
+# ssh wrapper for deploying from github
+# TODO move to separate cookbook/recipe
+cookbook_file "/home/microcloud/wrap-ssh4git.sh" do
+  source "wrap-ssh4git.sh"
+  owner "ubuntu"
+  mode 0700
+end
+
+# checkout latest microcloud code
+git "/home/microcloud/deploy" do
+  repository "git@github.com:10xEngineer/microcloud.10xEngineer.git"
+  reference "master"
+  action :sync
+  ssh_wrapper "/home/microcloud/wrap-ssh4git.sh"
+end
+
