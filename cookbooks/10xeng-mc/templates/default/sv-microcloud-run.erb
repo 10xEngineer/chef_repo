@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd /home/microcloud/deploy
+exec /usr/bin/coffee microcloud.coffee

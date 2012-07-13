@@ -41,3 +41,19 @@ git "/home/microcloud/deploy" do
   ssh_wrapper "/home/microcloud/wrap-ssh4git.sh"
 end
 
+# run npm
+script "install npm packages" do
+  interpreter "bash"
+  user "root"
+  cwd "/home/microcloud/deploy"
+  code <<-EOH
+  npm install
+  EOH
+end
+
+runit_service "microcloud"
+
+service "microcloud" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :start ]
+end
