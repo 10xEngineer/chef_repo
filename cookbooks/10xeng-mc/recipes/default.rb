@@ -35,6 +35,14 @@ cookbook_file "/home/microcloud/wrap-ssh4git.sh" do
   mode 0700
 end
 
+cookbook_file "/home/microcloud/htpasswd" do
+  source "htpasswd"
+  owner "root"
+  mode 0644
+
+  # FIXME restart nginx
+end
+
 # checkout latest microcloud code
 git "/home/microcloud/deploy" do
   repository "git@github.com:10xEngineer/microcloud.10xEngineer.git"
