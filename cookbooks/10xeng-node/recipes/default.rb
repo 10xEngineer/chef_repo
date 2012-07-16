@@ -103,6 +103,8 @@ if node['microcloud']['endpoint']
       :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
     }
     # TODO authorization not yet supported
-    #headers({"Authorization" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+    if node['10xeng-node']['token']
+      headers({"AUTHORIZATION" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+    end
   end
 end
