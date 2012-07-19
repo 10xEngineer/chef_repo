@@ -32,7 +32,7 @@ end
 cookbook_file "/home/microcloud/wrap-ssh4git.sh" do
   source "wrap-ssh4git.sh"
   owner "ubuntu"
-  mode 0700
+  mode 0755
 end
 
 cookbook_file "/home/microcloud/htpasswd" do

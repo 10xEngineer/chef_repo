@@ -8,7 +8,7 @@ export NODE=microcloud
 ssh -A ubuntu@${TARGET} <<'ENDSSH2'
 cd /var/chef
 sudo tar xvfz /tmp/chef_repo.tar.gz
-sudo chef-solo -c /var/chef/nodes/microcloud/solo.rb -j /var/chef/nodes/microcloud/node.json
+sudo chef-solo -c /var/chef/nodes/compile/solo.rb -j /var/chef/nodes/compile/node.json
 ENDSSH2
 
 echo "Happy? Happy!"
