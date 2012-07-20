@@ -25,6 +25,13 @@ cookbook_file "/home/compile/.ssh/authorized_keys" do
   mode 0600
 end
 
+cookbook_file "/home/compile/.ssh/id_rsa" do
+  source "mchammer-dev"
+  owner "compile"
+  group "users"
+  mode 0600
+end
+
 # ssh wrapper for deploying from github
 # TODO move to separate cookbook/recipe (shared with 10xeng-mc)
 cookbook_file "/home/compile/wrap-ssh4git.sh" do
