@@ -44,8 +44,17 @@ end
 # TODO currently using key via ssh agent forward (same as withing 10xeng-mc::default)
 git "/home/compile/deploy" do
   repository "git@github.com:10xEngineer/microcloud.10xEngineer.git"
-  reference "master"
+  # TODO temporary (revert to master once merged)
+  reference "labs"
   action :sync
   ssh_wrapper "/home/microcloud/wrap-ssh4git.sh"
 end
 
+script "bundle install" do
+  interpreter "bash"
+  user "root"
+  cwd "/home/compile/deploy/compilation"
+  code <<-EOH
+  bundle install
+  EOH
+end
