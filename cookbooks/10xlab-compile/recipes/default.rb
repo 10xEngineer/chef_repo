@@ -50,6 +50,10 @@ git "/home/compile/deploy" do
   ssh_wrapper "/home/compile/wrap-ssh4git.sh"
 end
 
+gem_package "bundler" do
+  action :install
+end
+
 script "bundle install" do
   interpreter "bash"
   user "root"
