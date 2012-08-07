@@ -45,7 +45,7 @@ end
 git "/home/compile/deploy" do
   repository "git@github.com:10xEngineer/microcloud.10xEngineer.git"
   # TODO temporary (revert to master once merged)
-  reference "labs"
+  reference "master"
   action :sync
   ssh_wrapper "/home/compile/wrap-ssh4git.sh"
 end
