@@ -47,7 +47,7 @@ git "/home/compile/deploy" do
   # TODO temporary (revert to master once merged)
   reference "labs"
   action :sync
-  ssh_wrapper "/home/microcloud/wrap-ssh4git.sh"
+  ssh_wrapper "/home/compile/wrap-ssh4git.sh"
 end
 
 script "bundle install" do
