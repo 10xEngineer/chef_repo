@@ -54,6 +54,10 @@ directory "/var/lib/10eng/" do
   action :create
 end
 
+gem_package "microcloud" do
+  action :install
+end
+
 # TODO where to source gem from?
 cookbook_file "/tmp/10xengineer-node.gem" do
   source "10xengineer-node-#{node["10xeng-node"]["toolchain"]["version"]}.gem"
@@ -94,17 +98,20 @@ end
 #  mode "0755"
 #end
 
+
 # FIXME cover notification as part of tests (important)
-if node['microcloud']['endpoint']
-  http_request "confirm node" do
-    action :post
-    url "#{node['microcloud']['endpoint']}/nodes/#{node['10xeng-node']['id']}/notify"
-    message :action => "confirm", :node => {
-      :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
-    }
-    # TODO authorization not yet supported
-    if node['10xeng-node']['token']
-      headers({"AUTHORIZATION" => "Basic #{Base64.encode64(node['10xeng-node']['token'])}"})
+ruby_block "notify_mc" do 
+  block do
+    if node['microcloud']['endpoint']
+      # FIXME move to LWPR?
+      require 'microcloud'
+
+      data = {
+        :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
+      }
+
+      microcloud = TenxLabs::Microcloud.new(node['microcloud']['endpoint'])
+      microcloud.submit_event('node', node['10xeng-node']['id'], 'confirm', data)
     end
   end
 end
