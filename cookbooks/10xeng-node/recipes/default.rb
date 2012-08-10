@@ -98,7 +98,6 @@ end
 #  mode "0755"
 #end
 
-
 # FIXME cover notification as part of tests (important)
 ruby_block "notify_mc" do 
   block do
