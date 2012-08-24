@@ -8,6 +8,7 @@ run_list(
   "recipe[lxc]",
   "recipe[ruby]",
   "recipe[lxc::rootfs-cache]",
+  "recipe[10xlab::default]",
   "recipe[10xeng-node::default]"
 )
 
