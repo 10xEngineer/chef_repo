@@ -54,10 +54,6 @@ directory "/var/lib/10eng/" do
   action :create
 end
 
-gem_package "microcloud" do
-  action :install
-end
-
 # TODO where to source gem from?
 cookbook_file "/tmp/10xengineer-node.gem" do
   source "10xengineer-node-#{node["10xeng-node"]["toolchain"]["version"]}.gem"

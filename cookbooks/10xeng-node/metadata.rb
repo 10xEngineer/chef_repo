@@ -10,3 +10,4 @@ end
 
 depends "lvm"
 depends "lxc"
+depends "10xlab"
