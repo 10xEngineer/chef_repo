@@ -1,8 +1,7 @@
 name "base"
 run_list(
   "recipe[apt]",
-  "recipe[git]",
-  "recipe[monit]"
+  "recipe[git]"
 )
 
 override_attributes "monit" => {
