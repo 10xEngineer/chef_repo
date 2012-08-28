@@ -8,9 +8,9 @@ run_list(
   "recipe[lxc]",
   "recipe[ruby]",
   "recipe[lxc::rootfs-cache]",
-  "recipe[10xlab::default]",
+  #"recipe[10xlab::default]",
   "recipe[10xeng-node::default]",
-  "recipe[10xlab-githost::default]"
+  #"recipe[10xlab-githost::default]"
 )
 
 override_attributes "authorization" => {

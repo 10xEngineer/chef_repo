@@ -82,6 +82,25 @@ template "/etc/10xeng.yaml" do
   mode "0644"
 end
 
+script "dpkg_into_chroot" do
+  interpreter "bash"
+  user "root"
+  cwd "/var/cache/lxc"
+  code <<-EOH
+  dpkg --root=/var/cache/lxc/precise/rootfs-i386 -i /var/cache/lxc/10xlab-bootstrap.deb
+  EOH
+
+  action :nothing
+end
+
+cookbook_file "/var/cache/lxc/10xlab-bootstrap.deb" do
+  source "10xlab-bootstrap_#{node["10xeng-lxc"]["bootstrap"]["version"]}.deb"
+  mode "0644"
+
+  notifies :run, "script[dpkg_into_chroot]", :immediately
+end
+
+
 #
 # install lxc templates (currently only lxc-ubuntu - based on default, only adding 
 # configurable packages

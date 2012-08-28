@@ -10,3 +10,4 @@ default["10xeng-vm"]["packages"] = %W{ssh vim git curl lxc
 									  ruby1.9.3 build-essential}
 
 
+default["10xeng-lxc"]["bootstrap"]["version"] = "0.1_all"
