@@ -1,8 +1,5 @@
 # recipe[10xlab-githost::default]
 
-# TODO one time setup
-# TODO import admin user / gitolite-admin/config/gitolite.conf
-
 chef_gem "ruby-shadow" do
   action :install
 end
@@ -45,11 +42,12 @@ directory "/home/git/bin" do
   action :create
 end
 
-
 # default admin public key
 cookbook_file "/home/git/tenxgit.pub" do
   source "tenxgit.pub"
   mode "0644"
+
+  not_if File.exists? "/home/git/bin/gitolite"
 end
 
 # sync gitolite
@@ -58,6 +56,9 @@ git "/home/git/gitolite" do
   reference "master"
 
   action :sync
+
+  not_if File.exists? "/home/git/bin/gitolite"
+  notifies :run, "script[install gitolite]"
 end
 
 script "install gitolite" do
@@ -69,4 +70,10 @@ script "install gitolite" do
   ./gitolite/install -to $HOME/bin
   /home/git/bin/gitolite setup -pk tenxgit.pub
   EOH
+
+  action :nothing
 end
+
+# TODO create 10xlab metadata
+#      based on template / vs 
+# TODO push it back
