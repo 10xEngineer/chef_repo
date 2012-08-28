@@ -1,5 +1,5 @@
 {
-  "run_list": ["role[hostnode]", "recipe[10xeng-node::ec2]", "recipe[gateone::server]"],
+  "run_list": ["role[hostnode]", "recipe[10xeng-node::ec2]"],
   "10xeng-node": {
   	"id": "x-replace-x",
   	"token": "tenxeng:6ZcNHEcumT6H"
