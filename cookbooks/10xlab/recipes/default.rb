@@ -4,7 +4,8 @@ gem_package "microcloud" do
   action :install
 end
 
-node["users"].each do |user|
+# TODO node["users"]
+[].each do |user|
   ruby_block "get_key" do
     block do
       require 'microcloud'
