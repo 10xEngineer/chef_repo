@@ -1,0 +1,13 @@
+{
+  "run_list": ["role[hostnode]", "recipe[10xeng-node::ec2]", "recipe[gateone::server]"],
+  "10xeng-node": {
+  	"id": "x-replace-x",
+  	"token": "tenxeng:6ZcNHEcumT6H"
+  },
+  "microcloud": {
+    "endpoint": "http://mc.apac.internal.laststation.net/"
+  },
+  "lxc": {
+    "arch": "amd64"
+  }
+}
