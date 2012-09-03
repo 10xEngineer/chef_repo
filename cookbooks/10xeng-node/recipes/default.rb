@@ -101,26 +101,16 @@ cookbook_file "/var/cache/lxc/10xlab-bootstrap.deb" do
 end
 
 # --- node_serv ---
-# TODO replace with package deploy
-directory "/home/mchammer/node_serv" do
-  owner "mchammer"
-  group "users"
-
-  recursive true
-  mode "0775"
-
-  action :create
+cookbook_file "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb" do
+  source "10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
+  mode "0644"
 end
 
-script "copy node_serv" do
-  interpreter "bash"
-  user "root"
-  cwd "/home/mchammer/node_serv"
-  code <<-EOH
-  cp -R /var/lib/10xeng/node_serv/* /home/mchammer/node_serv/
-  cd /home/mchammer/node_serv/
-  sudo npm install
-  EOH
+package "10xlabs-node-serv" do
+  source "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
+  provider Chef::Provider::Package::Dpkg  
+  
+  action :install
 end
 
 # main services

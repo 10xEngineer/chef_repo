@@ -8,4 +8,6 @@ default["10xeng-node"]["id"] = nil
 default["10xeng-node"]["toolchain"]["version"] = "0.0.15"
 default["10xeng-vm"]["packages"] = %W{ssh vim git curl lxc
 									  ruby1.9.3 build-essential}
+
 default["10xeng-lxc"]["bootstrap"]["version"] = "0.4_all"
+default["10xeng-lxc"]["node_serv"]["version"] = "0.1_all"
