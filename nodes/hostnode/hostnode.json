@@ -2,7 +2,7 @@
   "run_list": ["role[hostnode]", "recipe[10xeng-node::ec2]"],
   "10xeng-node": {
   	"id": "x-replace-x",
-  	"token": "tenxeng:6ZcNHEcumT6H"
+  	"token": "tenxeng:4haMWE4RoQGr"
   },
   "microcloud": {
     "endpoint": "http://mc.apac.internal.laststation.net/"
