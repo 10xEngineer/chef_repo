@@ -132,6 +132,7 @@ runit_service "node_serv"
 # FIXME cover notification as part of tests (important)
 ruby_block "notify_mc" do 
   block do
+    Chef::Log.info "Microcloud endpoint url=#{node['microcloud']['endpoint']}"
     if node['microcloud']['endpoint']
       # FIXME move to LWPR?
       require 'microcloud'
