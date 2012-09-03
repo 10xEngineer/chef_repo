@@ -71,7 +71,9 @@ script "install gems" do
   EOH
 end
 
+# main services
 runit_service "microcloud"
+runit_service "taskeng"
 
 template "/home/microcloud/deploy/service/Procfile" do
   source "Procfile.erb"

@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+
+export MICROCLOUD_ENV=<%= node["microcloud"]["environment"] %>
+
+cd /home/microcloud/deploy
+exec /usr/bin/coffee taskeng.coffee
