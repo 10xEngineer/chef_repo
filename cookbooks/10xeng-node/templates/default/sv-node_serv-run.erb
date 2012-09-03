@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd /home/mchammer/node_serv/
+exec /usr/bin/coffee node_serv.coffee

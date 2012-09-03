@@ -100,6 +100,31 @@ cookbook_file "/var/cache/lxc/10xlab-bootstrap.deb" do
   notifies :run, "script[dpkg_into_chroot]", :immediately
 end
 
+# --- node_serv ---
+# TODO replace with package deploy
+directory "/home/mchammer/node_serv" do
+  owner "mchammer"
+  group "users"
+
+  recursive true
+  mode "0775"
+
+  action :create
+end
+
+script "copy node_serv" do
+  interpreter "bash"
+  user "root"
+  cwd "/home/mchammer/node_serv"
+  code <<-EOH
+  cp -R /var/lib/10xeng/node_serv/* /home/mchammer/node_serv/
+  cd /home/mchammer/node_serv/
+  sudo npm install
+  EOH
+end
+
+# main services
+runit_service "node_serv"
 
 #
 # install lxc templates (currently only lxc-ubuntu - based on default, only adding 
