@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+cd /opt/10xlabs/term_serv
+exec /usr/bin/coffee term_serv.coffee

@@ -11,3 +11,4 @@ default["10xeng-vm"]["packages"] = %W{ssh vim git curl lxc
 
 default["10xeng-lxc"]["bootstrap"]["version"] = "0.4_all"
 default["10xeng-lxc"]["node_serv"]["version"] = "0.1_all"
+default["10xeng-lxc"]["term_serv"]["version"] = "0.1_all"
