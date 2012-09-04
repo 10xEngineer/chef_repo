@@ -1,0 +1,7 @@
+{
+	"gitolite-admin":{
+		"permissions": [
+			{"tenxgit":"RW+"}
+		]
+	}
+}

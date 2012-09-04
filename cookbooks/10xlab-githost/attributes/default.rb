@@ -1,0 +1,1 @@
+default["10xlab-githost"]["repo"] = "ssh://git@git.apac.10xlabs.laststation.net"
