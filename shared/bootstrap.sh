@@ -1,5 +1,7 @@
 # . source from target script
 
+set -x
+
 # bootstrap
 ssh -A ubuntu@${TARGET} <<'ENDSSH'
 sudo apt-get clean

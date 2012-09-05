@@ -36,6 +36,10 @@ template "/home/git/.10xlab-repo" do
   source "10xlab-repo.erb"
 end
 
+template "/home/git/.compile.conf" do
+  source "compile.conf.erb"
+end
+
 directory "/home/git/bin" do
   owner "git"
   group "git"
@@ -81,6 +85,25 @@ script "install gitolite" do
   EOH
 
   action :nothing
+end
+
+cookbook_file "/home/git/.gitolite.rc" do
+  source "gitolite.rc"
+  owner "git"
+  mode "0644"
+end
+
+# -- compilation package
+cookbook_file "/tmp/10xlabs-compilation_#{node["10xlab-githost"]["version"]}.deb" do
+  source "10xlabs-compilation_#{node["10xlab-githost"]["version"]}.deb"
+  mode "0644"
+end
+
+package "10xlabs-compilation" do
+  source "/tmp/10xlabs-compilation_#{node["10xlab-githost"]["version"]}.deb"
+  provider Chef::Provider::Package::Dpkg  
+  
+  action :install
 end
 
 # TODO create 10xlab metadata

@@ -1,3 +1,7 @@
 {
-  "run_list": ["role[githost]"]
+  "run_list": ["role[githost]"],
+  "microcloud": {
+    "endpoint": "http://mc.apac.internal.10xlabs.net/",
+    "compile": ""
+  }
 }
