@@ -83,42 +83,6 @@ script "install gitolite" do
   action :nothing
 end
 
-# initialize 10xlab metadata
-git "/tmp/gitolite-admin" do
-  repository "/home/git/repositories/gitolite-admin.git"
-  action :sync
-end
-
-directory "/tmp/gitolite-admin/10xlabs" do
-  owner "root"
-  group "root"
-  mode "0755"
-end
-
-cookbook_file "/tmp/gitolite-admin/10xlabs/metadata.json" do
-  source "metadata.json"
-
-  owner "root"
-  group "root"
-  mode "0644"
-
-  action :create_if_missing
-  notifies :run, "script[git_push]"
-end
-
-script "git_push" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp/gitolite-admin"
-  code <<-EOH
-  git add 10xlabs/metadata.json
-  git commit -m "Added 10xlabs metadata (10xlab-githost::default recipe)"
-  git push -f
-  EOH
-
-  action :nothing
-end
-
 # TODO create 10xlab metadata
 #      based on template / vs 
 # TODO push it back

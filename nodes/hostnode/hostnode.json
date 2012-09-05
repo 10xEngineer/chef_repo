@@ -5,7 +5,7 @@
   	"token": "tenxeng:4haMWE4RoQGr"
   },
   "microcloud": {
-    "endpoint": "http://mc.apac.internal.laststation.net/"
+    "endpoint": "http://mc.apac.internal.10xlabs.net/"
   },
   "lxc": {
     "arch": "amd64"
