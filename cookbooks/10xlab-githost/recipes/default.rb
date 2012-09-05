@@ -106,6 +106,15 @@ package "10xlabs-compilation" do
   action :install
 end
 
+script "install gitolite" do
+  interpreter "bash"
+  user "git"
+  cwd "/home/git"
+  code <<-EOH
+  ./bin/gitolite setup
+  EOH
+end
+
 # TODO create 10xlab metadata
 #      based on template / vs 
 # TODO push it back

@@ -15,4 +15,3 @@ sudo chef-solo -c /var/chef/nodes/githost/solo.rb -j /var/chef/nodes/githost/nod
 ENDSSH2
 
 echo "Happy? Happy!"
-
