@@ -1,3 +1,6 @@
 {
-  "run_list": ["role[compile]"]
+  "run_list": ["role[compile]"],
+  "microcloud": {
+    "endpoint": "http://mc.apac.internal.10xlabs.net/"
+  }
 }

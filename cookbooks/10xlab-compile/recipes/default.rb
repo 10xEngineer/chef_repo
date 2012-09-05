@@ -18,6 +18,14 @@ directory "/home/compile/.ssh" do
   mode 0700
 end
 
+template "/home/compile/.10xlabs-compile.json" do
+  source "10xlabs-compile.json.erb"
+  owner "compile"
+  group "users"
+  mode 0644
+  action :create
+end
+
 cookbook_file "/home/compile/.ssh/authorized_keys" do
   source "authorized_keys"
   owner "compile"
