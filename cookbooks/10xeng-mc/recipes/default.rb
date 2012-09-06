@@ -78,6 +78,9 @@ runit_service "taskeng"
 
 template "/home/microcloud/deploy/service/Procfile" do
   source "Procfile.erb"
+  user "root"
+  group "root"
+  mode "0644"
 end
 
 # FIXME services to be configurable via attributes
