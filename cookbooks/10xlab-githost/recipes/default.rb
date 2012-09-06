@@ -54,7 +54,7 @@ directory "/home/git/.ssh" do
   mode "0755"
 end
 
-coobkook_file "/home/git/.ssh/compile" do
+cookbook_file "/home/git/.ssh/compile" do
   source "compile"
 
   user "git"
