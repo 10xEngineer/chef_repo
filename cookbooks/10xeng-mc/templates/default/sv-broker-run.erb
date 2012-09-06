@@ -4,4 +4,4 @@ exec 2>&1
 export MICROCLOUD_ENV=<%= node["microcloud"]["environment"] %>
 
 cd /home/microcloud/deploy/service
-exec chpst -u microcloud -U microcloud /home/microcloud/deploy/service/bin/broker.sh
+exec chpst -u microcloud -U microcloud ssh-agent /home/microcloud/deploy/service/bin/broker.sh
