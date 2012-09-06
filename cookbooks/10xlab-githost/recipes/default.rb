@@ -42,6 +42,10 @@ end
 
 template "/home/git/.compile.conf" do
   source "compile.conf.erb"
+
+  user "git"
+  group "git"
+  mode "0644"
 end
 
 directory "/home/git/bin" do
@@ -110,7 +114,7 @@ package "10xlabs-compilation" do
   action :install
 end
 
-script "install gitolite" do
+script "setup gitolite" do
   interpreter "bash"
   user "git"
   cwd "/home/git"
