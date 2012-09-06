@@ -34,6 +34,10 @@ end
 
 template "/home/git/.10xlab-repo" do
   source "10xlab-repo.erb"
+
+  user "git"
+  group "git"
+  mode "0644"
 end
 
 template "/home/git/.compile.conf" do
