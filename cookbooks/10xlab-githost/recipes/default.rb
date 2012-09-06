@@ -62,6 +62,14 @@ cookbook_file "/home/git/.ssh/compile" do
   mode "0600"
 end
 
+template "/home/git/.ssh/known_hosts" do
+  source "known_hosts.erb"
+
+  owner "git"
+  group "git"
+
+  mode "0644"
+end
 
 directory "/home/git/bin" do
   owner "git"
