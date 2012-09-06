@@ -83,6 +83,19 @@ template "/home/microcloud/deploy/service/Procfile" do
   mode "0644"
 end
 
+directory "/etc/10xlabs" do
+  user "root"
+  group "root"
+  mode "0755"
+end
+
+cookbook_file "/etc/10xlabs/mchammer" do
+  source "mchammer-dev"
+  user "microcloud"
+  group "users"
+  mode "0600"
+end
+
 # FIXME services to be configurable via attributes
 %w{broker ec2 dummy lxc loop git_adm}.each do |serv_name|
   runit_service serv_name
