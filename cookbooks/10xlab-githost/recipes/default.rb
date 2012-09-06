@@ -48,6 +48,21 @@ template "/home/git/.compile.conf" do
   mode "0644"
 end
 
+directory "/home/git/.ssh" do
+  user "git"
+  group "git"
+  mode "0755"
+end
+
+coobkook_file "/home/git/.ssh/compile" do
+  source "compile"
+
+  user "git"
+  group "git"
+  mode "0600"
+end
+
+
 directory "/home/git/bin" do
   owner "git"
   group "git"
