@@ -97,7 +97,7 @@ cookbook_file "/etc/10xlabs/mchammer" do
 end
 
 # FIXME services to be configurable via attributes
-%w{broker ec2 dummy lxc loop git_adm}.each do |serv_name|
+%w{broker ec2 dummy lxc loop git_adm key}.each do |serv_name|
   runit_service serv_name
 
   service serv_name do
