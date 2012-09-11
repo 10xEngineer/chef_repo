@@ -10,5 +10,6 @@ run_list(
   "recipe[redis]",
   "recipe[mongodb]",
   "recipe[zmq]",
-  "recipe[10xeng-mc::default]"
+  "recipe[10xeng-mc::default]",
+  "recipe[10xeng-mc::compile]"
 )
