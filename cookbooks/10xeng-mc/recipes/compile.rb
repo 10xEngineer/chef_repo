@@ -1,5 +1,8 @@
 # 10xeng-mc::compile
 
+include_recipe "nginx"
+include_recipe "10xeng-mc::default"
+
 script "install npm packages" do
   interpreter "bash"
   user "root"
