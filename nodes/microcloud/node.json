@@ -1,6 +1,6 @@
 {
   "run_list": ["role[microcloud]"],
   "comp_serv": {
-  	"endpoint": "ec2-46-137-196-240.ap-southeast-1.compute.amazonaws.com"
+  	"node": "ec2-46-137-196-240.ap-southeast-1.compute.amazonaws.com"
   }
 }
