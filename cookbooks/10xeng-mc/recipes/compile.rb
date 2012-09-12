@@ -6,7 +6,7 @@ include_recipe "10xeng-mc::default"
 script "install npm packages" do
   interpreter "bash"
   user "root"
-  cwd "/home/microcloud/deploy/compile_serv"
+  cwd "/home/microcloud/deploy/comp_serv"
   code <<-EOH
   npm install
   EOH
