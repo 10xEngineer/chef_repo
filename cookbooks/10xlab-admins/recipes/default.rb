@@ -19,7 +19,7 @@ admins.each do |uid|
   directory home_dir do
     owner u["id"]
     group u["groups"].first
-    mode "0775"
+    mode "0755"
 
     action :create
   end
