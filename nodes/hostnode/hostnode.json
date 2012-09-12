@@ -1,5 +1,5 @@
 {
-  "run_list": ["role[hostnode]", "recipe[10xeng-node::ec2]"],
+  "run_list": ["recipe[10xlab-admins]", "role[hostnode]", "recipe[10xeng-node::ec2]"],
   "10xeng-node": {
   	"id": "x-replace-x",
   	"token": "tenxeng:4haMWE4RoQGr"

@@ -1,4 +1,4 @@
-name "compile"
+name "compile2"
 description "10xLabs compiler node (v2)"
 
 run_list(
