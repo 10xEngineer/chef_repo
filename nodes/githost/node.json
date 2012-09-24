@@ -2,6 +2,8 @@
   "run_list": ["role[githost]"],
   "microcloud": {
     "endpoint": "http://mc.apac.internal.10xlabs.net/",
-    "compile": ""
+  }
+  "10xlabs-githost": {
+  	"compile": "ec2-46-137-196-240.ap-southeast-1.compute.amazonaws.com"
   }
 }

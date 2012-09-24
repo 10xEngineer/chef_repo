@@ -22,14 +22,6 @@ directory node["10xlab"]["compnode"]["home_location"] do
 	action :create
 end
 
-template "/etc/sandbox_adduser.conf" do
-	source "sandbox_adduser.conf.erb"
-	owner "root"
-	group "root"
-
-	mode "0600"
-end
-
 packages = []
 packages << "10xlabs-compile-service_#{node["10xlab"]["compnode"]["version"]}"
 node["10xlab"]["compnode"]["compile_kits"].each do |kit|
