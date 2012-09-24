@@ -6,6 +6,10 @@ package "curl" do
 	action :install
 end
 
+package "git" do
+	action :install
+end
+
 group node["10xlab"]["compnode"]["sandbox_group"] do
 	gid node["10xlab"]["compnode"]["sandbox_gid"]
 end
