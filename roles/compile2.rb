@@ -11,7 +11,7 @@ run_list(
 override_attributes "authorization" => {
   "sudo" => {
     "groups" => ["admin"],
-    "users" => ["mchammer"],
+    "users" => ["compile"],
     "passwordless" => true
   }
 }

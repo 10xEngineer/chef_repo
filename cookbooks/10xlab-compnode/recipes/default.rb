@@ -96,9 +96,3 @@ cookbook_file "/home/compile/.ssh/id_rsa" do
   group "users"
   mode 0600
 end
-
-
-# TODO create mchammer user
-# TODO add it to sudoers
-# TODO deploy 10xlabs-compile-server 
-# TODO deploy individual compile_kits
