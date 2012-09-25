@@ -1,6 +1,6 @@
 {
-  "run_list": ["role[compile]", "role[compile2]"],
+  "run_list": ["role[compile2]"],
   "microcloud": {
-    "endpoint": "http://mc.apac.internal.10xlabs.net/"
+    "endpoint": "http://bunny.laststation.net:8080/"
   }
 }

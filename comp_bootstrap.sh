@@ -1,7 +1,7 @@
 #!/bin/sh
 
 : ${TARGET?"Set target instance for bootstrap as 'export TARGET=hostname' before running script."}
-export NODE=microcloud
+export NODE=compile
 
 . shared/bootstrap.sh
 
