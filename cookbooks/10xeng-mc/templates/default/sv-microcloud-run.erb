@@ -3,5 +3,4 @@ exec 2>&1
 
 export MICROCLOUD_ENV=<%= node["microcloud"]["environment"] %>
 
-cd /home/microcloud/deploy
-exec chpst -u microcloud -U microcloud ssh-agent /usr/bin/coffee microcloud.coffee
+exec chpst -u microcloud -U microcloud ssh-agent /home/microcloud/deploy/bin/microcloud
