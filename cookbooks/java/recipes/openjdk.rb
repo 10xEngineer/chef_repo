@@ -20,6 +20,6 @@ packages.each do |pkg|
 	package pkg do
 		action :install
 
-		notifies :create, "ruby_block[update-java-alternatives]", :immediately
+		notifies :create, "ruby_block[update-java-alternatives]"
 	end
 end
