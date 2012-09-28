@@ -1,0 +1,85 @@
+#!/bin/sh
+#
+# /etc/init.d/XXX
+#
+### BEGIN INIT INFO
+# Provides:          tomcat-XXX
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Should-Start:      $named
+# Should-Stop:       $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start specific Tomcat application instance.
+# Description:       Manage specific Tomcat application instance lifecycle.
+### END INIT INFO
+
+set -e
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+NAME="$(basename "$0" | sed 's/^[KS][0-9]\{2\}//')"
+DESC="Tomcat XXX servlet engine"
+DEFAULT=/etc/default/$NAME
+JVM_TMP=/tmp/tomcat6-$NAME-tmp
+
+if [ `id -u` -ne 0 ]; then
+        echo "You need root privileges to run this script"
+        exit 1
+fi
+
+# Make sure tomcat is started with system locale
+if [ -r /etc/default/locale ]; then
+        . /etc/default/locale
+        export LANG
+fi
+
+. /lib/lsb/init-functions
+
+. /lib/lsb/init-functions
+
+if [ -r /etc/default/rcS ]; then
+        . /etc/default/rcS
+fi
+
+# The following variables can be overwritten in $DEFAULT
+# Run Tomcat 6 as this user ID and group ID
+TOMCAT6_USER=<%= @resource.user %>
+TOMCAT6_GROUP=<%= @resource.group %>
+
+# FIXME XXX application profile needs to specify Java version
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386
+# FIXME XXX re-use application specific tomcat version
+export CATALINA_HOME=/usr/local/apache-tomcat-6.0.35/
+# FIXME XXX profile
+export CATALINA_BASE=/opt/java_apps/demo_instance/
+
+# FIXME temporary
+export JAVA_OPTS="$JAVA_OPTS -Dhttp.port=8080"
+export JAVA_OPTS="$JAVA_OPTS -Dshutdown.port=8005"
+export JAVA_OPTS="$JAVA_OPTS -Dajp.port=8009"
+export JAVA_OPTS="$JAVA_OPTS -Dssl.port=8443"
+
+
+# default options
+if [ -z "$JAVA_OPTS" ]; then
+        JAVA_OPTS="-Djava.awt.headless=true -Xmx128M"
+fi
+
+case "$1" in
+	start)
+		log_daemon_msg "Starting XXX"
+
+		${CATALINA_HOME}/bin/catalina.sh start
+		sleep 5
+		;;
+	stop)
+		log_deamon_msg "Stopping XXX"
+
+		${CATALINA_HOME}/bin/catalina.sh stop
+		sleep 5
+		;;
+	*)
+		log_success_msg "Usage: $0 {start|stop}"
+		exit 1
+		;;
+esac

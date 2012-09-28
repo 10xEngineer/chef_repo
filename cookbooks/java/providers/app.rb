@@ -5,8 +5,6 @@
 include JavaApplication
 
 def get_artefact
-	puts '--- get_artefact'
-
 	if new_resource.source == :local
 		location = "/var/10xlab"
 	end
@@ -14,6 +12,8 @@ def get_artefact
 	spec = application_spec(location)
 
 	build_artefact(spec)
+
+	spec
 end
 
 def build_artefact(spec)
@@ -30,16 +30,20 @@ def build_artefact(spec)
 		batch.code command
 		batch.run_action(:run)
 	end
-
-	# FIXME move artefact
 end
 
-def deploy_app(res)
+def deploy_app(spec)
+	command = "cp /var/10xlab/target/#{spec[:artifactId]}.#{spec[:packaging]} #{new_resource.destination}"
+
+	batch = Chef::Resource::Script::Bash.new "copy artefact", run_context
+	batch.code command
+	batch.run_action(:run)
 end
 
 action :deploy do
-	# <java_app[demo1] @resource_name: :java_app @name: "demo1" @noop: nil @before: nil @params: {} @provider: nil @allowed_actions: [:nothing, :deploy] @action: [:deploy] @updated: false @updated_by_last_action: false @supports: {} @ignore_failure: false @retries: 0 @retry_delay: 2 @sou rce_line: "/var/10xlab/cookbooks/sample_app/recipes/default.rb:1:in `from_file'" @elapsed_time: 0 @cookbook_name: :sample_app @recipe_name: "default">
+	Chef::Log.info '--- app_deploy'
+	Chef::Log.info new_resource.inspect
 
-	get_artefact
-	#deploy_app(new_resource)
+	spec = get_artefact
+	deploy_app(spec)
 end

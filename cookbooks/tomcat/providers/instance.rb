@@ -15,7 +15,7 @@ action :create do
 		"/bin" => {:user_access => false},
 		"/conf" => {:user_access => false},
 		"/webapps" => {:user_access => false},
-		"/log" => {:user_access => true},
+		"/logs" => {:user_access => true},
 		"/temp" => {:user_access => true},
 		"/work" => {:user_access => true},
 	}
@@ -91,5 +91,23 @@ action :create do
 		end
 	end
 
-  	# TODO tomcat service	
+	template "/etc/init.d/tomcat_#{new_resource.name}" do
+		source "init_service.erb"
+
+		cookbook "tomcat"
+
+		user "root"
+		group "root"
+		mode 0755
+
+		variables(
+			:resource => new_resource
+		)
+
+		action :create
+	end
+
+  	# TODO tomcat service control
+  	#      dev - do not run
+  	#      prod - run
 end
