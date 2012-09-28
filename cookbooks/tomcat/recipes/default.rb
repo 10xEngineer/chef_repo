@@ -20,4 +20,3 @@ script "install_tomcat" do
 
 	action :nothing
 end
-
