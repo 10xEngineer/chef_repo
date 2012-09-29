@@ -1,4 +1,4 @@
-module JavaApplication
+module Tomcat
 	def version_parser(version) 
 		m = version.match /^(\d+\.)?(\d+\.)?(\*|\d+)?$/
 
@@ -9,4 +9,5 @@ module JavaApplication
 		}
 	end
 
+	module_function :version_parser
 end
