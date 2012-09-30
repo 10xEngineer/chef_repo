@@ -46,6 +46,14 @@ script "dpkg_into_chroot" do
   code <<-EOH
   arch=`/usr/bin/dpkg --print-architecture`
   dpkg --root=/var/cache/lxc/precise/rootfs-${arch} -i /var/cache/lxc/10xlab-bootstrap.deb
+
+  #
+  # FIXME pre-provision chef into VM (temporary as chef dependency is optional - might be shell/puppet in future)
+  #
+  # original task
+  # https://trello.com/card/lxc-ubuntu-template-to-setup-chef-dependencies/50067c2712a969ae032917f4/16
+  #
+  chroot /var/cache/lxc/precise/rootfs-${arch} /bin/bash -c "gem install chef yajl-ruby --no-ri --no-rdoc"
   EOH
 
   action :nothing
