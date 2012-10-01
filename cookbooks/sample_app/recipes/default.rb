@@ -10,7 +10,8 @@ user "demo_app" do
 	shell "/bin/false"
 end
 
-tomcat_instance "demo_instance" do
+# TODO dynamically create user (if not withint resource collection)
+tomcat_instance "demo" do
 	version "6.0.35"
 
 	user "demo_app"
@@ -21,4 +22,9 @@ end
 
 java_app "demo1" do
 	action :deploy
+
+	java_flavor "openjdk"
+	java_version "6"
+
+	deploy_to "tomcat_instance[demo]"
 end
