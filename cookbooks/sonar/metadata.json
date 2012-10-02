@@ -1,0 +1,50 @@
+{
+  "dependencies": {
+    "java": ">= 0.0.0"
+  },
+  "name": "sonar",
+  "maintainer_email": "info@christian-trabold.de",
+  "attributes": {
+    "sonar/version": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "2.7",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "The version will be used to download the sources for the given version from 'http://dist.sonar.codehaus.org/sonar-#version#.zip'",
+      "display_name": "Sonar version"
+    }
+  },
+  "license": "Apache 2.0",
+  "suggestions": {
+  },
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Christian Trabold",
+  "long_description": "= DESCRIPTION:\n\nThis cookbook basically translates the install instructions from http://docs.codehaus.org/display/SONAR/Install+Sonar#InstallSonar-Server into chef DSL.\n\n= REQUIREMENTS:\n\n* java + jdk\n* A database cookbook like 'mysql' if you like to run sonar in production.\nThe built in derby database is not recommended for production.\n\n= ATTRIBUTES:\n\nSee attributes/default.rb for details.\n\n= USAGE:\n\nThe cookbook installs sonar with derby database (default).\nInlcude a proxy_* recipe to your run_list to access sonar over a proxy server.\n\n= Todos\n\n* Implement different Database backends like MySql\n* Implement plugin recipes eg. http://docs.codehaus.org/display/SONAR/PHP+Plugin",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+    "sonar::proxy_apache": "Includes the recipe to install Apache-Webserver and proxy modules to access sonar. Creates a host for sonar.",
+    "sonar::database_mysql": "Includes the recipe to install MySql-Server and create a database for sonar",
+    "sonar::proxy_nginx": "Includes the recipe to install Nginx-Webserver and configures proxy to access sonar. Creates a host for sonar.",
+    "sonar": "Includes the recipe to download and configure a sonar server"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures sonar",
+  "providing": {
+  }
+}
