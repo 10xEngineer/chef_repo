@@ -1,0 +1,89 @@
+#! /bin/sh
+#
+### BEGIN INIT INFO
+# Provides:          openvswitch-switch
+# Required-Start:    $network $named $remote_fs $syslog
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Open vSwitch switch
+### END INIT INFO
+
+(test -x /usr/local/sbin/ovs-vswitchd && test -x /usr/local/sbin/ovsdb-server) || exit 0
+
+. /usr/local/share/openvswitch/scripts/ovs-lib
+test -e /usr/local/openvswitch/default && . /usr/local/openvswitch/default
+
+
+if test X"$BRCOMPAT" = Xyes && test ! -x /usr/local/sbin/ovs-brcompatd; then
+    BRCOMPAT=no
+    log_warning_msg "ovs-brcompatd missing, disabling bridge compatibility"
+fi
+
+ovs_ctl () {
+    set /usr/local/share/openvswitch/scripts/ovs-ctl "$@"
+    if test X"$BRCOMPAT" = Xyes; then
+        set "$@" --brcompat
+    fi
+    "$@"
+}
+
+load_kmod () {
+    ovs_ctl load-kmod || exit $?
+}
+
+start () {
+    if ovs_ctl load-kmod; then
+        :
+    else
+        echo "Module has probably not been built for this kernel."
+        if ! test -d /usr/share/doc/openvswitch-datapath-source; then
+            echo "Install the openvswitch-datapath-source package, then read"
+        else
+            echo "For instructions, read"
+        fi
+        echo "/usr/share/doc/openvswitch-datapath-source/README.Debian"
+    fi
+    set ovs_ctl ${1-start} --system-id=random
+    if test X"$FORCE_COREFILES" != X; then
+        set "$@" --force-corefiles="$FORCE_COREFILES"
+    fi
+    "$@" || exit $?
+
+    ovs_ctl --protocol=gre enable-protocol
+}
+
+stop () {
+    ovs_ctl stop
+}
+
+case $1 in
+    start)
+        start
+        ;;
+    stop | force-stop)
+        stop
+        ;;
+    reload | force-reload)
+        # The OVS daemons keep up-to-date.
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    status)
+        ovs_ctl status
+        ;;
+    force-reload-kmod)
+        start force-reload-kmod
+        ;;
+    load-kmod)
+        load_kmod
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|force-reload|status|force-stop|force-reload-kmod|load-kmod}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

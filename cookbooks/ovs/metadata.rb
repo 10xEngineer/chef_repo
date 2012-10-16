@@ -7,6 +7,8 @@ version           "0.1.0"
 
 recipe "default", "Installs and manage OpenVSwitch"
 
+
+
 %w{ubuntu}.each do |os|
 	supports os
 end

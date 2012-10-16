@@ -1,3 +1,4 @@
 # OpenVSwitch 
 
-**TODO** tested with Ubuntu 12.04 Quantal
+**TODO** build vs default recipe (add service)
+**TODO** tested only with Ubuntu 12.04 Quantal
