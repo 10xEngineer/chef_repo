@@ -18,6 +18,14 @@ apt_repository "zfs-native" do
   notifies :run, "execute[apt-get update]", :immediately
 end
 
+package "linux-headers-virtual" do
+  action :install
+end
+
+package "linux-headers-#{node["kernel"]["release"]}" do
+  action :install
+end
+
 node["zfs"]["packages"].each do |pkg|
 	package pkg do
 		action :install
