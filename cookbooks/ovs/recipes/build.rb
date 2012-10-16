@@ -6,12 +6,16 @@
 	end
 end
 
+package "linux-headers-#{node["kernel"]["release"]}" do
+	action :install
+end
+
 remote_file "/tmp/openvswitch-#{node["ovs"]["version"]}.tar.gz" do
 	source node["ovs"]["distribution"]
 	mode 0644
 end
 
-cookbook_file /tmp/0001-Fixes-for-Labs-on-Quantal.patch" do
+cookbook_file "/tmp/0001-Fixes-for-Labs-on-Quantal.patch" do
 	source "0001-Fixes-for-Labs-on-Quantal.patch"
 end
 

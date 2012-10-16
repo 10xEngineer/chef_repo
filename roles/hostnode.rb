@@ -3,8 +3,10 @@ description "10xEngineer hostnode"
 run_list(
   "role[base]",
   "recipe[sudo]",
+  "recipe[zfs]",
+  "recipe[ovs::build]",
   "recipe[node]",
-  "recipe[lvm]",
+  #"recipe[lvm]",
   "recipe[lxc]",
   "recipe[ruby]",
   "recipe[redis]",
