@@ -46,7 +46,7 @@ script "dpkg_into_chroot" do
   code <<-EOH
   arch=`/usr/bin/dpkg --print-architecture`
   cd /var/cache/lxc/
-  dpkg --root=/var/cache/lxc/precise/rootfs-${arch} -i /var/cache/lxc/10xlab-bootstrap.deb
+  dpkg --root=/var/cache/lxc/quantal/rootfs-${arch} -i /var/cache/lxc/10xlab-bootstrap.deb
   EOH
 
   action :nothing

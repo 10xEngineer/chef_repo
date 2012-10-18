@@ -7,6 +7,7 @@ end
 
 zfs_zpool "lxc" do
   physical_volumes node["zfs"]["volumes"]
+  mountpoint "/var/lib/lxc"
 
   action :create
 end
