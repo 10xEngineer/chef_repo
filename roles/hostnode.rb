@@ -4,7 +4,7 @@ run_list(
   "role[base]",
   "recipe[sudo]",
   "recipe[zfs]",
-  "recipe[ovs::build]",
+  #"recipe[ovs::build]",
   "recipe[node]",
   #"recipe[lvm]",
   "recipe[lxc]",
@@ -14,7 +14,7 @@ run_list(
   #"recipe[10xlab::default]",
   "recipe[10xlab-admins::default]",
   "recipe[10xeng-node::default]",
-  "recipe[10xeng-node::term_serv]",
+  #"recipe[10xeng-node::term_serv]",
   #"recipe[10xlab-githost::default]"
 )
 

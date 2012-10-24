@@ -39,40 +39,40 @@ template "/etc/10xlabs-hostnode.json" do
   mode "0644"
 end
 
-script "dpkg_into_chroot" do
-  interpreter "bash"
-  user "root"
-  cwd "/var/cache/lxc"
-  code <<-EOH
-  arch=`/usr/bin/dpkg --print-architecture`
-  cd /var/cache/lxc/
-  dpkg --root=/var/cache/lxc/quantal/rootfs-${arch} -i /var/cache/lxc/10xlab-bootstrap.deb
-  EOH
+#script "dpkg_into_chroot" do
+#  interpreter "bash"
+#  user "root"
+#  cwd "/var/cache/lxc"
+#  code <<-EOH
+#  arch=`/usr/bin/dpkg --print-architecture`
+#  cd /var/cache/lxc/
+#  dpkg --root=/var/cache/lxc/precise/rootfs-${arch} -i /var/cache/lxc/10xlab-bootstrap.deb
+#  EOH
+#
+#  action :nothing
+#end
 
-  action :nothing
-end
-
-cookbook_file "/var/cache/lxc/10xlab-bootstrap.deb" do
-  source "10xlab-bootstrap_#{node["10xeng-lxc"]["bootstrap"]["version"]}.deb"
-  mode "0644"
-
-  notifies :run, "script[dpkg_into_chroot]", :immediately
-end
+#cookbook_file "/var/cache/lxc/10xlab-bootstrap.deb" do
+#  source "10xlab-bootstrap_#{node["10xeng-lxc"]["bootstrap"]["version"]}.deb"
+#  mode "0644"
+#
+#  notifies :run, "script[dpkg_into_chroot]", :immediately
+#end
 
 # --- node_serv ---
-cookbook_file "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb" do
-  source "10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
-  mode "0644"
-end
+#cookbook_file "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb" do
+#  source "10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
+#  mode "0644"
+#end
 
-package "10xlabs-node-serv" do
-  source "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
-  provider Chef::Provider::Package::Dpkg  
-  
-  action :install
-end
+#package "10xlabs-node-serv" do
+#  source "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
+#  provider Chef::Provider::Package::Dpkg  
+#  
+#  action :install
+#end
 
-runit_service "node_serv"
+#runit_service "node_serv"
 
 #
 # install lxc templates (currently only lxc-ubuntu - based on default, only adding 
@@ -87,19 +87,19 @@ runit_service "node_serv"
 #end
 
 # FIXME cover notification as part of tests (important)
-ruby_block "notify_mc" do 
-  block do
-    Chef::Log.info "Microcloud endpoint url=#{node['microcloud']['endpoint']}"
-    if node['microcloud']['endpoint']
-      # FIXME move to LWPR?
-      require 'microcloud'
-
-      data = {
-        :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
-      }
-
-      microcloud = TenxLabs::Microcloud.new(node['microcloud']['endpoint'])
-      microcloud.submit_event('node', node['10xeng-node']['id'], 'confirm', data)
-    end
-  end
-end
+#ruby_block "notify_mc" do 
+#  block do
+#    Chef::Log.info "Microcloud endpoint url=#{node['microcloud']['endpoint']}"
+#    if node['microcloud']['endpoint']
+#      # FIXME move to LWPR?
+#      require 'microcloud'
+#
+#      data = {
+#        :hostname => node.has_key?("ec2") ? node["ec2"]["public_hostname"] : node["hostname"]
+#      }
+#
+#      microcloud = TenxLabs::Microcloud.new(node['microcloud']['endpoint'])
+#      microcloud.submit_event('node', node['10xeng-node']['id'], 'confirm', data)
+#    end
+#  end
+#end
