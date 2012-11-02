@@ -5,10 +5,6 @@ default["microcloud"]["endpoint"] = nil
 default["10xeng-node"]["token"] = nil
 default["10xeng-node"]["id"] = nil
 
-default["10xeng-node"]["toolchain"]["version"] = "0.1.3"
+default["10xeng-node"]["toolchain"]["version"] = "1.0.1"
 default["10xeng-vm"]["packages"] = %W{ssh vim git curl lxc
 									  ruby1.9.3 build-essential}
-
-default["10xeng-lxc"]["bootstrap"]["version"] = "0.5_all"
-default["10xeng-lxc"]["node_serv"]["version"] = "0.1_all"
-default["10xeng-lxc"]["term_serv"]["version"] = "0.1_all"

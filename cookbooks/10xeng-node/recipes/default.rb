@@ -34,6 +34,14 @@ cookbook_file "/etc/init/lxc-net.conf" do
   notifies :restart, "service[lxc-net]"
 end
 
+cookbook_file "/etc/default/lxc" do
+  source "lxc"
+  mode "0644"
+
+  notifies :restart, "service[lxc-net]"
+end
+
+
 template "/etc/10xlabs-hostnode.json" do
   source "10xlabs-hostnode.json.erb"
   mode "0644"
@@ -58,21 +66,6 @@ end
 #
 #  notifies :run, "script[dpkg_into_chroot]", :immediately
 #end
-
-# --- node_serv ---
-#cookbook_file "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb" do
-#  source "10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
-#  mode "0644"
-#end
-
-#package "10xlabs-node-serv" do
-#  source "/tmp/10xlabs-node-serv_#{node["10xeng-lxc"]["node_serv"]["version"]}.deb"
-#  provider Chef::Provider::Package::Dpkg  
-#  
-#  action :install
-#end
-
-#runit_service "node_serv"
 
 #
 # install lxc templates (currently only lxc-ubuntu - based on default, only adding 
