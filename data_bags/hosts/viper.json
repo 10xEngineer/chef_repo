@@ -1,0 +1,11 @@
+{
+	"id": "viper",
+	"int": {
+		"hostname": "viper.eu-1-aws.int.10xlabs.net",
+		"ipv4": "10.0.0.9"
+	},
+	"ext": {
+		"hostname": "viper.eu-1-aws.ext.10xlabs.net",
+		"ipv4": "54.246.141.189"
+	}
+}

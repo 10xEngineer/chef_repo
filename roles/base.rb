@@ -1,13 +1,6 @@
 name "base"
 run_list(
   "recipe[apt]",
-  "recipe[git]"
+  "recipe[git]",
+  "recipe[10xeng-hosts]"
 )
-
-override_attributes "monit" => {
-  "start_delay" => 15,
-  "interval" => 30,
-  "web" => {
-    :enabled => true
-  }
-}
