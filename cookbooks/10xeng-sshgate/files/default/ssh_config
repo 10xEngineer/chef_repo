@@ -1,0 +1,6 @@
+Host nd01.eu-1-aws.int.10xlabs.net
+	User labproxy
+	IdentityFile /home/sshgate/
+
+Host *
+	ProxyCommand ssh -q nd01.eu-1-aws.int.10xlabs.net nc -q0 %h 22
