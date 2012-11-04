@@ -16,88 +16,38 @@ end
   end
 end
 
-# microcloud user
-user "microcloud" do
-  comment "Microcloud user"
-  uid 1666
-  gid "users"
-  home "/home/microcloud"
-  shell "/bin/sh"
-  password "$1$n1NZCRfR$9nERbvjfw0EXRe4PrmBAi0"
-  supports :manage_home => true
-end
-
-# ssh wrapper for deploying from github
-# TODO move to separate cookbook/recipe
-cookbook_file "/home/microcloud/wrap-ssh4git.sh" do
-  source "wrap-ssh4git.sh"
-  owner "ubuntu"
-  mode 0755
-end
-
-# tenxeng:4haMWE4RoQGr
-#cookbook_file "/home/microcloud/htpasswd" do
-#  source "htpasswd"
-#  owner "root"
-#  mode 0644
-#
-#  notifies :restart, "service[nginx]"
-#end
-
-# checkout latest microcloud code
-git "/home/microcloud/deploy" do
-  repository "git@github.com:10xEngineer/microcloud.10xEngineer.git"
-  reference "master"
-  action :sync
-  ssh_wrapper "/home/microcloud/wrap-ssh4git.sh"
-end
-
-# run npm
-script "install npm packages" do
-  interpreter "bash"
-  user "root"
-  cwd "/home/microcloud/deploy"
-  code <<-EOH
-  npm install
-  EOH
-end
-
-# run bundler
+# service gems
 script "install gems" do
   interpreter "bash"
   user "root"
-  cwd "/home/microcloud/deploy/service"
+  cwd "/home/labsys/base/service"
   code <<-EOH
   bundle install
   EOH
 end
 
-# main services
-runit_service "microcloud"
-runit_service "taskeng"
+directory "/etc/labs" do
+  user "root"
+  group "root"
+  mode "0755"
+end
 
-template "/home/microcloud/deploy/service/Procfile" do
+cookbook_file "/home/labsys/.ssh/id_rsa" do
+  source "mchammer-dev"
+  user "labsys"
+  group "labsys"
+  mode "0600"
+end
+
+template "/home/labsys/base/service/Procfile" do
   source "Procfile.erb"
   user "root"
   group "root"
   mode "0644"
 end
 
-directory "/etc/10xlabs" do
-  user "root"
-  group "root"
-  mode "0755"
-end
-
-cookbook_file "/etc/10xlabs/mchammer" do
-  source "mchammer-dev"
-  user "microcloud"
-  group "users"
-  mode "0600"
-end
-
-# FIXME services to be configurable via attributes
-%w{broker ec2 dummy lxc loop git_adm key}.each do |serv_name|
+# dummy lxc key
+%w{broker dummy lxc key}.each do |serv_name|
   runit_service serv_name
 
   service serv_name do
@@ -106,21 +56,3 @@ end
   end
 end
 
-service "microcloud" do
-  supports :status => true, :restart => true, :reload => true
-  action [ :start ]
-end
-
-template "/etc/nginx/sites-available/microcloud.conf" do
-  source "microcloud.conf.erb"
-end
-
-nginx_site "microcloud.conf" do
-  enable true
-end
-
-# FIXME need to provide 10xeng.yaml config
-# FIXME buckets for binary distributions
-# FIXME provisiong AMIs for 10xeng AWS account
-# FIXME toolchain binary distribution to 10xeng AWS account
-# FIXME get DNS endpoint

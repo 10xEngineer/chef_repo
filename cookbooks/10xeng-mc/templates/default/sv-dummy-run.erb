@@ -3,5 +3,5 @@ exec 2>&1
 
 export MICROCLOUD_ENV=<%= node["microcloud"]["environment"] %>
 
-cd /home/microcloud/deploy/service
-exec chpst -u microcloud -U microcloud ssh-agent /home/microcloud/deploy/service/bin/service.sh dummy
+cd /home/labsys/base/service
+exec chpst -u labsys:labsys /home/labsys/base/service/bin/service.sh dummy
