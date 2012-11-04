@@ -52,13 +52,13 @@ end
 
   service serv_name do
     supports :status => true, :restart => true, :reload => true
-    action [ :start ]
+    action [ :restart ]
   end
 end
 
 runit_service "microcloud"
 service "microcloud" do
   supports :status => true, :restart => true, :reload => true
-  action [ :start ]
+  action [ :restart ]
 end
 

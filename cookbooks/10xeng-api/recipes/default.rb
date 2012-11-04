@@ -4,7 +4,7 @@ runit_service "api"
 
 service "api" do
   supports :status => true, :restart => true, :reload => true
-  action [ :start ]
+  action [ :restart ]
 end
 
 template "/etc/nginx/sites-available/labs_api.conf" do
