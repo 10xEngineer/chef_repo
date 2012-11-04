@@ -1,0 +1,22 @@
+upstream manage_app {
+	server unix:/home/manage_app/tmp/unicorn.sock fail_timeout=0;
+}
+
+server {
+	server_name manage.10xlabs.net;
+
+	root /home/manage_app/webapp/public/;
+
+	location ^~ /assets/ {
+    	gzip_static on;
+    	expires max;
+    	add_header Cache-Control public;
+  	}	
+
+	location / {
+    	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    	proxy_set_header Host $http_host;
+    	proxy_redirect off;
+    	proxy_pass http://manage_app;
+	}
+}

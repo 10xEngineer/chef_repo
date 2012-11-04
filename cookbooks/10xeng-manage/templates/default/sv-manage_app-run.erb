@@ -1,0 +1,5 @@
+#!/bin/sh
+cd /home/manage_app/webapp
+
+exec 2>&1
+exec chpst -u manage_app:labsys bundle exec "/usr/local/bin/bundle exec unicorn -c config/unicorn.rb -E production"
