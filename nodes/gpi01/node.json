@@ -3,6 +3,7 @@
   	"role[base]",
   	"role[api]",
   	"role[manage_app]",
-  	"role[microcloud]"
+  	"role[microcloud]",
+  	"role[eu-1-aws]"
   ]
 }
