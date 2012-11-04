@@ -1,0 +1,7 @@
+#!/bin/sh
+export MICROCLOUD_ENV=development
+
+cd /home/labsys/base
+
+exec 2>&1
+exec chpst -u labsys:labsys /usr/bin/coffee api.coffee

@@ -1,0 +1,15 @@
+upstream api {
+	server localhost:8090;
+}
+
+server {
+	listen 10.0.0.10:80;
+	server_name api.labs.internal;
+
+	location ^~ /v1/ {
+    	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    	proxy_set_header Host $http_host;
+    	proxy_redirect off;
+    	proxy_pass http://api/;
+	}
+}

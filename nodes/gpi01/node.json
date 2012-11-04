@@ -1,3 +1,6 @@
 {
-  "run_list": ["role[base]"]
+  "run_list": [
+  	"role[base]",
+  	"role[api]"
+  ]
 }
