@@ -17,7 +17,7 @@ sudo mkdir -p /var/chef
 ENDSSH
 
 # distribute
-tar -cz -f /tmp/chef_repo.tar.gz .
+gtar --exclude-vcs -cz -f /tmp/chef_repo.tar.gz .
 scp /tmp/chef_repo.tar.gz ubuntu@${TARGET}:/tmp/
 # TODO replace 
 scp ../service/security/mc_deploy ubuntu@${TARGET}:/tmp/
