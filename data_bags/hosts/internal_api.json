@@ -1,0 +1,11 @@
+{
+	"id": "api-internal",
+	"int": {
+		"hostname": "api.labs.internal",
+		"ipv4": "10.0.0.10"
+	},
+	"ext": {
+		"hostname": "gpi01.eu-1-aws.ext.10xlabs.net",
+		"ipv4": "54.246.146.150"
+	}
+}

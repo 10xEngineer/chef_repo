@@ -8,7 +8,6 @@ _hosts.each do |host|
 	hosts << _host.raw_data
 end
 
-
 template "/etc/hosts" do
 	source "hosts.erb"
 
