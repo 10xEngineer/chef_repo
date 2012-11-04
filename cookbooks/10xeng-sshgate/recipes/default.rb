@@ -88,7 +88,7 @@ _proxies.each do |_proxy|
 	  uid proxy["uid"]
 	  gid "sshgate"
 	  home "/home/#{proxy["id"]}"
-	  shell "/bin/false"
+	  shell "/bin/sh"
 	  password "$1$zq8LgADX$kIKNNFfUPCgF.JnJd.cl21"
 	end
 
@@ -105,7 +105,7 @@ _proxies.each do |_proxy|
 
 	cookbook_file "/home/#{proxy["id"]}/.ssh/id_rsa" do
 		source "labproxy_key"
-		
+
 		owner proxy["uid"]
 		group "sshgate"
 
