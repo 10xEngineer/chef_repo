@@ -13,6 +13,9 @@ admins.each do |uid|
     home home_dir
     shell u["shell"]
 
+    # Y6PB7TvXz6ck7uPH
+    password "$1$Z4iVkLtC$Axq1ayUCSCyurGfqT37IM/"
+
     supports :manage_home => false
   end
 

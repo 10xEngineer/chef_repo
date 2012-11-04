@@ -1,0 +1,8 @@
+{
+	"id": "nd01",
+	"int": {
+		"hostname": "nd01.eu-1-aws.int.10xlabs.net",
+		"ipv4": "10.0.10.11"
+	},
+	"ext": {}
+}
