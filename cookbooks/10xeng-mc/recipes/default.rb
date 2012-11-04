@@ -56,3 +56,9 @@ end
   end
 end
 
+runit_service "microcloud"
+service "microcloud" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :start ]
+end
+

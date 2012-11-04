@@ -1,6 +1,3 @@
 {
-  "run_list": ["role[microcloud]"],
-  "comp_serv": {
-  	"node": "ec2-46-137-196-240.ap-southeast-1.compute.amazonaws.com"
-  }
+  "run_list": ["role[api]", "role[microcloud]"],
 }

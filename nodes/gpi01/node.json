@@ -1,6 +1,8 @@
 {
   "run_list": [
   	"role[base]",
-  	"role[api]"
+  	"role[api]",
+  	"role[manage_app]",
+  	"role[microcloud]"
   ]
 }
