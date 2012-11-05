@@ -87,7 +87,7 @@ end
 
 script "precompile_assets" do
   interpreter "bash"
-  user "root"
+  user "manage_app"
   cwd "/home/manage_app/webapp"
   code <<-EOH
   export HOME=/home/manage_app

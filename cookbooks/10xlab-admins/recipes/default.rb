@@ -1,5 +1,9 @@
 # 10xlabs::admins
 
+chef_gem "ruby-shadow" do
+  action :install
+end
+
 admins = data_bag('admins')
 admins.each do |uid|
   u = data_bag_item('admins', uid)
