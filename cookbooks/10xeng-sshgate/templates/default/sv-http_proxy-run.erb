@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export NODE_ENV=production
+
+cd /opt/10xlabs/gateway
+
+exec 2>&1
+exec chpst -u root:root /usr/bin/coffee proxy.coffee

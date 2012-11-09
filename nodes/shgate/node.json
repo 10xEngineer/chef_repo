@@ -1,6 +1,6 @@
 {
   "run_list": [
   	"role[base]",
-  	"recipe[10xeng-sshgate]"
+  	"role[gate]"
   ]
 }
