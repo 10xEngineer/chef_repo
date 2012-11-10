@@ -14,7 +14,8 @@ run_list(
   #"recipe[10xlab::default]",
   "recipe[10xlab-admins::default]",
   "recipe[10xeng-node::default]",
-  "recipe[10xeng-node::iptables]"
+  "recipe[10xeng-node::iptables]",
+  "recipe[10xeng-node::http_proxy]"
 )
 
 override_attributes "authorization" => {
