@@ -10,6 +10,7 @@ run_list(
   "recipe[lxc]",
   "recipe[ruby]",
   #"recipe[redis]",
+  "recipe[revealcloud]",
   "recipe[lxc::rootfs-cache]",
   #"recipe[10xlab::default]",
   "recipe[10xlab-admins::default]",
@@ -23,5 +24,8 @@ override_attributes "authorization" => {
     "groups" => ["admin"],
     "users" => ["ubuntu", "mchammer"],
     "passwordless" => true
+  },
+  "copperegg" => {
+    "apikey" => "iv9MlKU7LKh65P4A"
   }
 }
