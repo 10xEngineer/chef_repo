@@ -96,8 +96,14 @@ script "precompile_assets" do
 end
 
 runit_service "manage_app"
+runit_service "manage_jobs"
 
 service "manage_app" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :start ]
+end
+
+service "manage_jobs" do
   supports :status => true, :restart => true, :reload => true
   action [ :start ]
 end
