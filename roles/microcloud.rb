@@ -3,6 +3,7 @@ description "10xEngineer Labs Microcloud"
 
 run_list(
   "role[base]",
+  "recipe[tarsnap]",
   "recipe[nginx]",
   "recipe[runit]",
   "recipe[ruby]",
