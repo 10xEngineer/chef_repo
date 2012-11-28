@@ -5,6 +5,12 @@ upstream eu_1_aws {
 server {
 	server_name api.eu-1-aws.10xlabs.net;
 
+	listen 80;
+	listen 443 ssl;
+
+	ssl_certificate /etc/ssl/certs/eu-1-aws.crt;
+	ssl_certificate_key /etc/ssl/private/eu-1-aws.key;
+
 	root /var/www/nginx-default;
 
     location ^~ /v1/ {
