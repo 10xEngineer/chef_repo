@@ -12,6 +12,7 @@ ssh -A ubuntu@${TARGET} <<'ENDSSH'
 #sudo /usr/bin/gem install chef --no-ri --no-rdoc
 sudo /usr/bin/gem install ruby-shadow --no-ri --no-rdoc
 
+echo "aa"
 if [ ! -d /var/chef/repo ]; then
 	sudo rm -Rf /var/chef
 	sudo mkdir -p /var/chef
