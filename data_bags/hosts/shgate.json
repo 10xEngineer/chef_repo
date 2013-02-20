@@ -2,7 +2,7 @@
 	"id": "shgate",
 	"int": {
 		"hostname": "shgate.eu-1-aws.int.10xlabs.net",
-		"ipv4": "10.0.0.19"
+		"ipv4": "10.0.0.211"
 	},
 	"ext": {
 		"hostname": "shgate.eu-1-aws.ext.10xlabs.net",
