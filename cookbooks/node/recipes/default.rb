@@ -28,13 +28,13 @@ apt_repository "node.js" do
 end
 
 package "nodejs" do
-  action :install
   action :upgrade
 end
 
-package "npm" do
-  action :upgrade
-end
+# This is installed as part of node.js 
+#package "npm" do
+#  action :upgrade
+#end
 
 node["npm"]["packages"].each do |p|
   script "install #{p}" do
