@@ -29,10 +29,11 @@ end
 
 package "nodejs" do
   action :install
+  action :upgrade
 end
 
 package "npm" do
-  action :install
+  action :upgrade
 end
 
 node["npm"]["packages"].each do |p|
