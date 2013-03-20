@@ -28,11 +28,11 @@ apt_repository "node.js" do
 end
 
 package "nodejs" do
-  action :upgrade
+#  action :upgrade
 end
 
 package "npm" do
-  action :upgrade
+#  action :upgrade
 end
 
 node["npm"]["packages"].each do |p|
